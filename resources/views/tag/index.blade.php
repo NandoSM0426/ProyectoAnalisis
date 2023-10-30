@@ -1,11 +1,17 @@
-index 
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+
+<a href= "{{ url('tag/create') }}"> Crear nuevo tag </a>
 <thead class="thead-light">
     <table>
         <tr>
-            <th>"id"</th>
-            <th>Nombre:</th>
-            <th>Tipo:</th>
-            <th>Acciones:</th>
+            <th>Id    </th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <br>
+            <th>Acciones</th>
         </tr>
 </thead>
 <tbody>
@@ -14,9 +20,13 @@ index
         <td>{{$tag->id}}</td>
         <td>{{$tag->Nombre}}</td>
         <td>{{$tag->Tipo}}</td>
-        <td>Editar|Eliminar</td>
+
+        <td>Editar | Eliminar</td>
 
     </tr>
     @endforeach
 </tbody>
 </table>
+
+</div>
+@endsection 

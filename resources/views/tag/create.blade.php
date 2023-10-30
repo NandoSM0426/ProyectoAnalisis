@@ -1,4 +1,5 @@
-Hola soy el create y estoy list
+<a href= "{{ url('tag')}}" > Ver tags creados. </a>
+
 <form action="{{url('/tag')}}" method="post" enctype="multipart/form-data" > 
 @csrf
 <label for="Nombre"> Nombre </label>

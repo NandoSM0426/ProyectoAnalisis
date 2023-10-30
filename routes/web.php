@@ -17,7 +17,7 @@ use App\Http\Controllers\TagController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tag/create');
 });
 
 Auth::routes();
