@@ -1,4 +1,4 @@
-index puto
+index 
 <thead class="thead-light">
     <table>
         <tr>
