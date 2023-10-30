@@ -12,7 +12,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $datos['tags']=Tag::paginate(3);
+        return view('tag.index', $datos);
     }
 
     /**
@@ -20,7 +21,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -28,7 +29,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     $datosDelTag = request()->except('_token');
+     Tag::insert($datosDelTag);
+     return response()->json($datosDelTag);
     }
 
     /**
