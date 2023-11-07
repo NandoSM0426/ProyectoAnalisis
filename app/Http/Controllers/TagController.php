@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
+
 class TagController extends Controller
 {
     /**
@@ -12,7 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $datos['tags']=Tag::paginate(3);
+        $datos['tags']=Tag::get();
         return view('tag.index', $datos);
     }
 
@@ -29,9 +30,21 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-     $datosDelTag = request()->except('_token');
+        $request->validate([
+            'Nombre' => 'required',
+            'Tipo' => 'required',
+        ]);
+    
+        $tag = new Tag();
+        $tag->Nombre = $request->input('Nombre');
+        $tag->Tipo = $request->input('Tipo');
+        $tag->save();
+    
+        return redirect()->route('tag.index'); // Redirige a la vista index después de guardar.
+
+     /*$datosDelTag = request()->except('_token');
      Tag::insert($datosDelTag);
-     return response()->json($datosDelTag);
+     return response()->json($datosDelTag);*/
     }
 
     /**
@@ -63,6 +76,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('tag.index')->with('success', 'El tag ha sido eliminado correctamente');
     }
 }

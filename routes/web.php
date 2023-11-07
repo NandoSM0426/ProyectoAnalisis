@@ -17,8 +17,13 @@ use App\Http\Controllers\TagController;
 */
 
 Route::get('/', function () {
-    return view('tag/create');
+    return view('tag/principal');
 });
+Route::get('/principal', function () {
+    return view('tag/principal');
+})->name('principal');
+
+Route::delete('tag/{tag}', 'TagController@destroy')->name('tag.destroy');
 
 Auth::routes();
 

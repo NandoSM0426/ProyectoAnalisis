@@ -10,6 +10,8 @@
     <div class="container mt-4">
         <h3 class="text-center">Gestión de Tags</h3>
         <a href="{{ url('tag/create') }}" class="btn btn-primary mb-3">Crear Nuevo Tag</a>
+        <a href="{{ route('principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
+
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -26,8 +28,14 @@
                         <td><?= $tag->Nombre ?></td>
                         <td><?= $tag->Tipo ?></td>
                         <td>
-                            <a href="<?= url('tag/edit', $tag->id) ?>" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="<?= url('tag/delete', $tag->id) ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a href="<?= url('tag/edit', $tag->id) ?>" class="btn btn-primary btn-sm mb-3">Editar</a>
+
+                            <form method="POST" action="{{ route('tag.destroy', $tag->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm mb-3 ">Eliminar</button>
+                            </form>
+
                         </td>
                     </tr>
                 <?php } ?>
