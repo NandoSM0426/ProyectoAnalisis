@@ -16,12 +16,7 @@ use App\Http\Controllers\TagController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('tag/principal');
-});
-Route::get('/principal', function () {
-    return view('tag/principal');
-})->name('principal');*/
+
 
 Route::delete('tag/{tag}', 'TagController@destroy')->name('tag.destroy');
 
@@ -29,5 +24,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::resource('tag', TagController::class);
 
