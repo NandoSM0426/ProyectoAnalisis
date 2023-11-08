@@ -20,8 +20,8 @@
 <body>
     <div class="container mt-5">
         <h3 class="text-center">Gestión de Tags</h3>
-        <a href="{{ url('tag') }}" class="btn btn-primary btn-block mb-3">Ver Tags Creados</a>
-        <form action="{{ url('/tag') }}" method="post" enctype="multipart/form-data">
+        <a href="{{ url('/api/Tags') }}" class="btn btn-primary btn-block mb-3">Ver Tags Creados</a>
+        <form action="{{ url('/api/Tags/Guardar') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="Nombre">Nombre</label>

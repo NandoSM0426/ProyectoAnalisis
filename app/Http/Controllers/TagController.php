@@ -11,12 +11,25 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['tags']=Tag::get();
-        return view('tag.index', $datos);
+
+        $tags = Tag::all();
+
+        if ($request->wantsJson()) {
+            // Si se solicita una respuesta JSON (por ejemplo, desde la API), devuelve los datos como JSON.
+            return response()->json(['tags' => $tags], 200);
+        } else {
+            // Si es una solicitud web (vista Blade), renderiza la vista correspondiente.
+            return view('tag.index', compact('tags'));
+        }
     }
 
+    
+    public function GetPrincipal()
+    {
+        return view('tag.principal');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -30,21 +43,39 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'Nombre' => 'required',
-            'Tipo' => 'required',
-        ]);
+        
+        if ($request->method() === 'POST') {
+            if ($request->wantsJson()) {
+                // Handle JSON request
+                $request->validate([
+                    'Nombre' => 'required',
+                    'Tipo' => 'required',
+                ]);
     
-        $tag = new Tag();
-        $tag->Nombre = $request->input('Nombre');
-        $tag->Tipo = $request->input('Tipo');
-        $tag->save();
+                $tag = new Tag();
+                $tag->Nombre = $request->input('Nombre');
+                $tag->Tipo = $request->input('Tipo');
+                $tag->save();
     
-        return redirect()->route('tag.index'); // Redirige a la vista index después de guardar.
-
-     /*$datosDelTag = request()->except('_token');
-     Tag::insert($datosDelTag);
-     return response()->json($datosDelTag);*/
+                return response()->json(['message' => 'Tag creado con éxito'], 201);
+            } else {
+                // Handle web request
+                $request->validate([
+                    'Nombre' => 'required',
+                    'Tipo' => 'required',
+                ]);
+    
+                $tag = new Tag();
+                $tag->Nombre = $request->input('Nombre');
+                $tag->Tipo = $request->input('Tipo');
+                $tag->save();
+                return redirect()->route('tag.index')->with('success', 'El tag ha sido creado correctamente');
+    
+               
+            }
+        } else {
+            return view('tag.index');
+        }
     }
 
     /**

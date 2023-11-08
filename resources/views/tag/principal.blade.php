@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="div-9">
-          <a href="{{ route('tag.index') }}" class="a-5">Gestionar Tags</a>
+        <a href="{{ url('/api/Tags') }}" class="a-5">Gestionar Tags</a>
           <img
             loading="lazy"
             srcset="
@@ -42,6 +42,7 @@
             "
             class="img-2"
           />
+          
           <div class="div-10">
             <img
               loading="lazy"

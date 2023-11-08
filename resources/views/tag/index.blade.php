@@ -9,8 +9,8 @@
 <body>
     <div class="container mt-4">
         <h3 class="text-center">Gestión de Tags</h3>
-        <a href="{{ url('tag/create') }}" class="btn btn-primary mb-3">Crear Nuevo Tag</a>
-        <a href="{{ route('principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
+        <a href="{{ url('api/Tags/create') }}" class="btn btn-primary mb-3">Crear Nuevo Tag</a>
+        <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
 
         <table class="table">
             <thead class="thead-light">
