@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('Precio');
             $table->string('Ubicacion');
             $table->boolean('Disponibilidad')->nullable()->default(true);
+            $table->string('nombre')->default(null);
+            $table->string('descripcion')->default(null);
+            $table->string('imagen')->default(null);
             $table->timestamps();
-
         });
     }
 
