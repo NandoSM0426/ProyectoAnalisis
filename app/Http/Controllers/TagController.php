@@ -17,15 +17,15 @@ class TagController extends Controller
         $tags = Tag::all();
 
         if ($request->wantsJson()) {
-            // Si se solicita una respuesta JSON (por ejemplo, desde la API), devuelve los datos como JSON.
+
             return response()->json(['tags' => $tags], 200);
         } else {
-            // Si es una solicitud web (vista Blade), renderiza la vista correspondiente.
+
             return view('tag.index', compact('tags'));
         }
     }
 
-    
+
     public function GetPrincipal()
     {
         return view('tag.principal');
@@ -43,7 +43,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         if ($request->method() === 'POST') {
             if ($request->wantsJson()) {
                 // Handle JSON request
@@ -51,12 +51,12 @@ class TagController extends Controller
                     'Nombre' => 'required',
                     'Tipo' => 'required',
                 ]);
-    
+
                 $tag = new Tag();
                 $tag->Nombre = $request->input('Nombre');
                 $tag->Tipo = $request->input('Tipo');
                 $tag->save();
-    
+
                 return response()->json(['message' => 'Tag creado con éxito'], 201);
             } else {
                 // Handle web request
@@ -64,14 +64,12 @@ class TagController extends Controller
                     'Nombre' => 'required',
                     'Tipo' => 'required',
                 ]);
-    
+
                 $tag = new Tag();
                 $tag->Nombre = $request->input('Nombre');
                 $tag->Tipo = $request->input('Tipo');
                 $tag->save();
                 return redirect()->route('tag.index')->with('success', 'El tag ha sido creado correctamente');
-    
-               
             }
         } else {
             return view('tag.index');
@@ -83,7 +81,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('tag.show', compact('tag'));
     }
 
     /**
@@ -91,7 +89,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit', compact('tag'));
     }
 
     /**
@@ -99,15 +97,35 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Tipo' => 'required',
+        ]);
+
+        $tag->Nombre = $request->input('Nombre');
+        $tag->Tipo = $request->input('Tipo');
+        $tag->save();
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Tag updated successfully'], 200);
+        } else {
+            return redirect()->route('tag.index')->with('success', 'El tag ha sido actualizado correctamente');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy(Request $request, Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('tag.index')->with('success', 'El tag ha sido eliminado correctamente');
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Tag deleted successfully'], 200);
+        } else {
+            return redirect()->route('tag.index')->with('success', 'El tag ha sido eliminado correctamente');
+        }
     }
+
+    
 }
