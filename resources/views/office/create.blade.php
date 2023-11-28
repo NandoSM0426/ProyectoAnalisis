@@ -33,10 +33,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Nueva Oficina</h5>
-            <a href="{{ url('api/Index') }}" class="btn btn-primary mb-3">Volver a la lista de oficinas</a>
+            <a href="{{ url('api/Offices') }}" class="btn btn-primary mb-3">Volver a la lista de oficinas</a>
             <form action= "{{ url('/api/Offices/Guardar') }}" method="post" enctype="multipart/form-data">
              @csrf
-
               <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre">
@@ -50,14 +49,18 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
               </div>
               <div class="form-group">
-                <label for="precio">Precio por Hora</label>
+                <label for="precio">Precio</label>
                 <input type="text" class="form-control" id="precio" name="precio">
+              </div>
+              <div class="form-group">
+                <label for="precio">Disponibilidad</label>
+                <input type="text" class="form-control" id="disponibilidad" name="disponibilidad">
               </div>
               <div class="form-group">
                 <label for="imagen">Cargar Imagen</label>
                 <input type="file" class="form-control-file" id="imagen" name="imagen">
               </div>
-              <button type="submit" class="btn btn-success btn-block">Crear Oficina</button>
+              <button type="submit" class="btn btn-success btn-block">Guardar </button>
               
             </form>
           </div>

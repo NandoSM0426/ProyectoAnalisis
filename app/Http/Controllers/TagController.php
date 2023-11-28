@@ -21,7 +21,7 @@ class TagController extends Controller
             return response()->json(['tags' => $tags], 200);
         } else {
 
-            return view('office.index', compact('tags'));
+            return view('tag.index', compact('tags'));
         }
     }
 

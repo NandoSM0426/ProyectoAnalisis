@@ -18,7 +18,7 @@
           <div class="div-6"></div>
           <a href="..." class="a-3">Cualquier semana</a>
           <div class="div-7"></div>
-          <a href="{{ url('/api/Office') }}" class="a-4">Gestionar oficinas</a>
+          <a href="{{ url('/api/Offices') }}" class="a-4">Gestionar oficinas</a>
           <div class="div-8">
             <img
               loading="lazy"

@@ -16,7 +16,8 @@
 <body>
   <div class="container">
     <h1 class="text-center">Lista de Oficinas</h1>
-
+    <a href="{{ url('api/Offices/create') }}" class="btn btn-primary mb-3">Crear Nueva ofcina</a>
+    <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
     <!-- Mostrar Oficinas -->
     <div class="row">
       <!-- Ejemplo de tarjeta de oficina -->
