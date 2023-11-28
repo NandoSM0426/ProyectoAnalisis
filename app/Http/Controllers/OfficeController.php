@@ -15,8 +15,10 @@ class OfficeController extends Controller
         $offices = Office::all();
 
         if ($request->wantsJson()) {
+            // Return JSON response for API requests
             return response()->json(['offices' => $offices], 200);
         } else {
+            // Return view template for web requests
             return view('office.index', compact('offices'));
         }
     }
@@ -27,14 +29,13 @@ class OfficeController extends Controller
     }
 
 
-  /*  public function GetPrincipal()
+    /*  public function GetPrincipal()
     {
         return view('tag.principal');
     }
 */
-    /**
-     * Store a newly created resource in storage.
-     */
+
+
     public function store(Request $request)
     {
         if ($request->method() === 'POST') {
@@ -86,24 +87,18 @@ class OfficeController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Office $office)
     {
         return view('office.show', compact('office'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Office $office)
     {
         return view('office.edit', compact('office'));
     }
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Office $office)
     {
         $request->validate([
@@ -114,30 +109,28 @@ class OfficeController extends Controller
             'Descripcion' => 'required',
             'Imagen' => 'nullable|url'
         ]);
-    
+
         $office->Precio = $request->input('Precio');
         $office->Ubicacion = $request->input('Ubicacion');
         $office->Disponibilidad = $request->input('Disponibilidad');
         $office->Nombre = $request->input('Nombre');
         $office->Descripcion = $request->input('Descripcion');
         $office->Imagen = $request->input('Imagen');
-    
+
         $office->save();
-    
+
         if ($request->wantsJson()) {
             return response()->json(['message' => 'Office updated successfully'], 200);
         } else {
             return redirect()->route('office.index')->with('success', 'La oficina se ha actualizado correctamente');
         }
     }
-    
-    /**
-     * Remove the specified resource from storage.
-     */
+
+
     public function destroy(Request $request, Office $office)
     {
         $office->delete();
-    
+
         if ($request->wantsJson()) {
             return response()->json(['message' => 'Office deleted successfully'], 200);
         } else {

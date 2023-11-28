@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/Principal', [TagController::class,'GetPrincipal']);
+
 Route::get('/Tags', [TagController::class,'index'])->name('tag.index');
 Route::get('/Tags/create', [TagController::class,'create']);
 Route::post('/Tags/Guardar', [TagController::class,'store']);
@@ -32,3 +34,8 @@ Route::get('/Offices/create', [OfficeController::class, 'create']);
 Route::post('/Offices/Guardar', [OfficeController::class, 'store']);
 Route::delete('/Offices/{office}', [OfficeController::class, 'destroy'])->name('office.destroy');
 Route::put('/Offices/{office}', [OfficeController::class, 'update'])->name('office.update');
+
+
+
+
+
