@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('Precio');
-            $table->string('Ubicacion');
+            $table->string('Ubicacion')->default('Sin ubicación');
             $table->boolean('Disponibilidad')->nullable()->default(true);
             $table->string('nombre')->default(null);
             $table->string('descripcion')->default(null);
