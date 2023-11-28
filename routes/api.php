@@ -26,7 +26,7 @@ Route::post('/Tags/Guardar', [TagController::class,'store']);
 Route::delete('/Tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
 Route::put('/Tags/{tag}', [TagController::class, 'update'])->name('tag.update');
 
-Route::get('/Principal', [OfficeController::class, 'GetPrincipal']);
+//Route::get('/Principal', [OfficeController::class, 'GetPrincipal']);
 Route::get('/Offices', [OfficeController::class, 'index'])->name('office.index');
 Route::get('/Offices/create', [OfficeController::class, 'create']);
 Route::post('/Offices/Guardar', [OfficeController::class, 'store']);

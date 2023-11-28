@@ -27,11 +27,11 @@ class OfficeController extends Controller
     }
 
 
-    public function GetPrincipal()
+  /*  public function GetPrincipal()
     {
         return view('tag.principal');
     }
-
+*/
     /**
      * Store a newly created resource in storage.
      */

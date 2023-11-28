@@ -9,7 +9,8 @@ use Tests\TestCase;
 
 class TagControllerTest extends TestCase
 {
-    use RefreshDatabase; // Para reiniciar la base de datos antes de las pruebas
+
+    use RefreshDatabase; // Reiniciar la base de datos antes de las pruebas
 
     public function testIndexReturnsJsonResponse()
     {
@@ -24,17 +25,16 @@ class TagControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('tag.create');
     }
-
     public function testStoreCreatesTag()
     {
         $data = [
             'Nombre' => 'Ejemplo',
             'Tipo' => 'Prueba',
         ];
-
+    
         $response = $this->post('/api/Tags/Guardar', $data);
-        $response->assertStatus(201);
-
+        $response->assertStatus(201); // Changed from 302 to 201
+    
         // Asegurarse de que la etiqueta se ha creado en la base de datos
         $this->assertDatabaseHas('tags', $data);
     }
