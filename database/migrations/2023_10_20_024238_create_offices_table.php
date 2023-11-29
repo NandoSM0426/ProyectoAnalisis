@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nombre')->default(null);
             $table->string('descripcion')->default(null);
             //$table->text('imagen')->nullable();
-            string('imagen')->default(null);
+            $table->string('imagen')->default(null);
             $table->timestamps();
         });
     }

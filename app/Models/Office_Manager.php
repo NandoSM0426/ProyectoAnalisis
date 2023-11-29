@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Office_Manager extends Model
+class OfficeManager extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'nombre',
+        'correo',
+        'nombredeusuario',
+        'contrasena',
+    ];
 }

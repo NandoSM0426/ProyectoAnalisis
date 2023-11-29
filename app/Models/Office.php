@@ -2,10 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'nombre',
+        'precio',
+        'ubicacion',
+        'disponibilidad',
+        'descripcion',
+        'imagen',
+    ];
+
+    public function reservations()
+    {
+        return $this->belongsToMany(Reservation::class, 'details_offices');
+    }
 }

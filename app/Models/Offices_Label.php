@@ -2,10 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Offices_Label extends Model
+class OfficesLabel extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'id',
+        'tag_id',
+        'oficina_id',
+    ];
+
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
+
+    public function oficina()
+    {
+        return $this->belongsTo(Oficina::class);
+    }
 }
