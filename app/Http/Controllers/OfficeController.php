@@ -56,7 +56,13 @@ class OfficeController extends Controller
                 $office->Disponibilidad = $request->input('Disponibilidad');
                 $office->Nombre = $request->input('nombre');
                 $office->Descripcion = $request->input('descripcion');
-                $office->Imagen = $request->input('imagen');
+                //$office->Imagen = $request->input('imagen');
+
+
+                // Manejar la carga de archivos
+            if ($request->hasFile('imagen')) {
+            $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+             }
                 $office->save();
 
                 return response()->json(['message' => 'Office created successfully'], 201);

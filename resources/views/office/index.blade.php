@@ -13,18 +13,20 @@
         <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
 
         <div class="row">
-            @foreach($offices as $offices)
+            @foreach($offices as $office)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{ asset($offices->imagen) }}" class="card-img-top" alt="Imagen de la oficina">
+                        <img src="{{ asset('storage/offices/' . $office->imagen) }}" class="card-img-top" alt="Imagen de la oficina">
+                        
+
                         <div class="card-body">
-                            <h5 class="card-title">{{ $offices->nombre }}</h5>
-                            <p class="card-text">Ubicación: {{ $offices->Ubicacion }}</p>
-                            <p class="card-text">Descripción: {{ $offices->descripcion }}</p>
-                            <p class="card-text">Precio por Hora: {{ $offices->Precio }}</p>
-                            <p class="card-text">Disponibilidad: {{ $offices->Disponibilidad }}</p>
+                            <h5 class="card-title">{{ $office->nombre }}</h5>
+                            <p class="card-text">Ubicación: {{ $office->Ubicacion }}</p>
+                            <p class="card-text">Descripción: {{ $office->descripcion }}</p>
+                            <p class="card-text">Precio por Hora: {{ $office->Precio }}</p>
+                            <p class="card-text">Disponibilidad: {{ $office->Disponibilidad }}</p>
                               <!-- Formulario de eliminación -->
-                           <form action="{{ route('office.destroy', ['office' => $offices->id]) }}" method="post">
+                           <form action="{{ route('office.destroy', ['office' => $office->id]) }}" method="post">
                             @csrf
                             @method('delete')
                            <button type="submit" class="btn btn-danger">Eliminar</button>
