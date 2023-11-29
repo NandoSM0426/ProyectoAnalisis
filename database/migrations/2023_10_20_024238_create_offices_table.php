@@ -18,7 +18,8 @@ return new class extends Migration
             $table->boolean('Disponibilidad')->nullable()->default(true);
             $table->string('nombre')->default(null);
             $table->string('descripcion')->default(null);
-            $table->string('imagen')->default(null);
+            //$table->text('imagen')->nullable();
+            string('imagen')->default(null);
             $table->timestamps();
         });
     }

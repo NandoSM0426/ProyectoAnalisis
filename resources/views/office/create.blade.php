@@ -42,7 +42,7 @@
               </div>
               <div class="form-group">
                 <label for="ubicacion">Ubicación</label>
-                <input type="text" class="form-control" id="ubicacion" name="ubicacion">
+                <input type="text" class="form-control" id="ubicacion" name="Ubicacion">
               </div>
               <div class="form-group">
                 <label for="descripcion">Descripción</label>
@@ -50,14 +50,14 @@
               </div>
               <div class="form-group">
                 <label for="precio">Precio</label>
-                <input type="text" class="form-control" id="precio" name="precio">
+                <input type="text" class="form-control" id="precio" name="Precio">
               </div>
               <div class="form-group">
-                <label for="precio">Disponibilidad</label>
-                <input type="text" class="form-control" id="disponibilidad" name="disponibilidad">
+                <label for="disponibilidad">Disponibilidad</label>
+                <input type="text" class="form-control" id="disponibilidad" name="Disponibilidad">
               </div>
               <div class="form-group">
-                <label for="imagen">Cargar Imagen</label>
+                <label for="imagen">Imagen</label>
                 <input type="file" class="form-control-file" id="imagen" name="imagen">
               </div>
               <button type="submit" class="btn btn-success btn-block">Guardar </button>

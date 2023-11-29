@@ -1,47 +1,45 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Oficinas</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .card-img-small {
-      max-height: 150px;
-      object-fit: cover;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Oficinas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center">Lista de Oficinas</h1>
-    <a href="{{ url('api/Offices/create') }}" class="btn btn-primary mb-3">Crear Nueva ofcina</a>
-    <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
-    <!-- Mostrar Oficinas -->
-    <div class="row">
-      <!-- Ejemplo de tarjeta de oficina -->
-      <div class="col-md-4">
-        <div class="card">
-          <img src="ruta-de-la-imagen.jpg" class="card-img-top card-img-small" alt="Imagen de la oficina">
-          <div class="card-body">
-            <h5 class="card-title">Nombre de la Oficina</h5>
-            <p class="card-text">Ubicación: Ubicación de la Oficina</p>
-            <p class="card-text">Descripción: Descripción de la Oficina</p>
-            <p class="card-text">Precio por Hora: Precio de la Oficina</p>
-            
-            <!-- Formulario de eliminación -->
-            <form action="/ruta-del-servidor/eliminar-oficina" method="post">
-              <!-- Reemplaza "/ruta-del-servidor/eliminar-oficina" con la ruta adecuada en tu servidor -->
-              <input type="hidden" name="idOficina" value="1">
-              <!-- El campo hidden "idOficina" debe contener el ID de la oficina -->
-              <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-          </div>
+    <div class="container mt-5">
+        <h1 class="text-center">Lista de Oficinas</h1>
+        <a href="{{ url('api/Offices/create') }}" class="btn btn-primary mb-3">Crear Nueva Oficina</a>
+        <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
+
+        <div class="row">
+            @foreach($offices as $offices)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset($offices->imagen) }}" class="card-img-top" alt="Imagen de la oficina">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $offices->nombre }}</h5>
+                            <p class="card-text">Ubicación: {{ $offices->Ubicacion }}</p>
+                            <p class="card-text">Descripción: {{ $offices->descripcion }}</p>
+                            <p class="card-text">Precio por Hora: {{ $offices->Precio }}</p>
+                            <p class="card-text">Disponibilidad: {{ $offices->Disponibilidad }}</p>
+
+                            <!-- Formulario de eliminación -->
+                            <form action="{{ url('/eliminar-oficina') }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="idOficina" value="{{ $offices->id }}">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-      </div>
-      <!-- Fin del ejemplo -->
     </div>
-  </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -45,18 +45,18 @@ class OfficeController extends Controller
                     'Precio' => 'required',
                     'Ubicacion' => 'required',
                     'Disponibilidad' => 'required|boolean',
-                    'Nombre' => 'required',
-                    'Descripcion' => 'required',
-                    'Imagen' => 'nullable|url'
+                    'nombre' => 'required',
+                    'descripcion' => 'required',
+                    'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                 ]);
 
                 $office = new Office();
                 $office->Precio = $request->input('Precio');
                 $office->Ubicacion = $request->input('Ubicacion');
                 $office->Disponibilidad = $request->input('Disponibilidad');
-                $office->Nombre = $request->input('Nombre');
-                $office->Descripcion = $request->input('Descripcion');
-                $office->Imagen = $request->input('Imagen');
+                $office->Nombre = $request->input('nombre');
+                $office->Descripcion = $request->input('descripcion');
+                $office->Imagen = $request->input('imagen');
                 $office->save();
 
                 return response()->json(['message' => 'Office created successfully'], 201);
@@ -66,18 +66,23 @@ class OfficeController extends Controller
                     'Precio' => 'required',
                     'Ubicacion' => 'required',
                     'Disponibilidad' => 'required|boolean',
-                    'Nombre' => 'required',
-                    'Descripcion' => 'required',
-                    'Imagen' => 'nullable|url'
+                    'nombre' => 'required',
+                    'descripcion' => 'required',
+                    'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                 ]);
 
                 $office = new Office();
                 $office->Precio = $request->input('Precio');
                 $office->Ubicacion = $request->input('Ubicacion');
                 $office->Disponibilidad = $request->input('Disponibilidad');
-                $office->Nombre = $request->input('Nombre');
-                $office->Descripcion = $request->input('Descripcion');
-                $office->Imagen = $request->input('Imagen');
+                $office->Nombre = $request->input('nombre');
+                $office->Descripcion = $request->input('descripcion');
+                //$office->Imagen = $request->input('imagen');
+
+
+                if ($request->hasFile('imagen')) {
+                    $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+                }
                 $office->save();
 
                 return redirect()->route('office.index')->with('success', 'La oficina se ha creado correctamente');
@@ -105,17 +110,22 @@ class OfficeController extends Controller
             'Precio' => 'required',
             'Ubicacion' => 'required',
             'Disponibilidad' => 'required|boolean',
-            'Nombre' => 'required',
-            'Descripcion' => 'required',
-            'Imagen' => 'nullable|url'
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $office->Precio = $request->input('Precio');
         $office->Ubicacion = $request->input('Ubicacion');
         $office->Disponibilidad = $request->input('Disponibilidad');
-        $office->Nombre = $request->input('Nombre');
-        $office->Descripcion = $request->input('Descripcion');
-        $office->Imagen = $request->input('Imagen');
+        $office->Nombre = $request->input('nombre');
+        $office->Descripcion = $request->input('descripcion');
+        //$office->Imagen = $request->input('imagen');
+
+        // Manejar la carga de archivos
+        if ($request->hasFile('imagen')) {
+            $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+        }
 
         $office->save();
 
