@@ -61,7 +61,7 @@ class OfficeController extends Controller
 
                 // Manejar la carga de archivos
             if ($request->hasFile('imagen')) {
-            $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+            $office->Imagen =  $request->file('imagen')->store('public/images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
              }
                 $office->save();
 
@@ -87,7 +87,7 @@ class OfficeController extends Controller
 
 
                 if ($request->hasFile('imagen')) {
-                    $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+                    $office->Imagen = $request->file('imagen')->store('public/images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
                 }
                 $office->save();
 
@@ -130,7 +130,7 @@ class OfficeController extends Controller
 
         // Manejar la carga de archivos
         if ($request->hasFile('imagen')) {
-            $office->Imagen = $request->file('imagen')->store('images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
+            $office->Imagen = $request->file('imagen')->store('public/images/offices'); // Ajusta 'tu_directorio_de_carga' según sea necesario
         }
 
         $office->save();
