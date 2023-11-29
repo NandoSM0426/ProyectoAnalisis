@@ -13,32 +13,31 @@
         <a href="{{ url('api/Principal') }}" class="btn btn-primary mb-3">Ir a la Vista Principal</a>
 
         <div class="row">
-            @foreach($offices as $office)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('storage/' . $office->imagen) }}" class="card-img-top" alt="Imagen de la oficina">
-                        
-                        
-
-
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $office->nombre }}</h5>
-                            <p class="card-text">Ubicación: {{ $office->Ubicacion }}</p>
-                            <p class="card-text">Descripción: {{ $office->descripcion }}</p>
-                            <p class="card-text">Precio por Hora: {{ $office->Precio }}</p>
-                            <p class="card-text">Disponibilidad: {{ $office->Disponibilidad }}</p>
-                              <!-- Formulario de eliminación -->
-                           <form action="{{ route('office.destroy', ['office' => $office->id]) }}" method="post">
-                            @csrf
-                            @method('delete')
-                           <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        @foreach($offices as $office)
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ asset('storage/' . $office->imagen) }}" class="card-img-top" alt="Imagen de la oficina">
+            <div class="card-body">
+                <h5 class="card-title">{{ $office->nombre }}</h5>
+                <p class="card-text">Ubicación: {{ $office->Ubicacion }}</p>
+                <p class="card-text">Descripción: {{ $office->descripcion }}</p>
+                <p class="card-text">Precio por Hora: {{ $office->Precio }}</p>
+                <p class="card-text">Disponibilidad:
+                    @if ($office->Disponibilidad == 0)
+                        Disponible
+                    @else
+                        No disponible
+                    @endif
+                </p>
+                <form action="{{ route('office.destroy', ['office' => $office->id]) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
         </div>
     </div>
 
