@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestionar Oficinas</title>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -14,6 +15,7 @@
       max-height: 150px;
       object-fit: cover;
     }
+
     body {
       display: flex;
       align-items: center;
@@ -23,6 +25,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1 class="text-center">Gestionar Oficinas</h1>
@@ -34,8 +37,8 @@
           <div class="card-body">
             <h5 class="card-title">Nueva Oficina</h5>
             <a href="{{ url('api/Offices') }}" class="btn btn-primary mb-3">Volver a la lista de oficinas</a>
-            <form action= "{{ url('/api/Offices/Guardar') }}" method="post" enctype="multipart/form-data">
-             @csrf
+            <form action="{{ url('/api/Offices/Guardar') }}" method="post" enctype="multipart/form-data">
+              @csrf
               <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre">
@@ -54,14 +57,17 @@
               </div>
               <div class="form-group">
                 <label for="disponibilidad">Disponibilidad</label>
-                <input type="text" class="form-control" id="disponibilidad" name="Disponibilidad">
+                <select class="form-control" id="disponibilidad" name="Disponibilidad">
+                  <option value="0">Disponible</option>
+                  <option value="1">No disponible</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="imagen">Imagen</label>
                 <input type="file" class="form-control-file" id="imagen" name="imagen">
               </div>
               <button type="submit" class="btn btn-success btn-block">Guardar </button>
-              
+
             </form>
           </div>
         </div>
@@ -69,4 +75,5 @@
     </div>
   </div>
 </body>
+
 </html>
