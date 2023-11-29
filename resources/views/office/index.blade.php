@@ -23,14 +23,13 @@
                             <p class="card-text">Descripción: {{ $offices->descripcion }}</p>
                             <p class="card-text">Precio por Hora: {{ $offices->Precio }}</p>
                             <p class="card-text">Disponibilidad: {{ $offices->Disponibilidad }}</p>
-
-                            <!-- Formulario de eliminación -->
-                            <form action="{{ url('/eliminar-oficina') }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="hidden" name="idOficina" value="{{ $offices->id }}">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                              <!-- Formulario de eliminación -->
+                           <form action="{{ route('office.destroy', ['office' => $offices->id]) }}" method="post">
+                            @csrf
+                            @method('delete')
+                           <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
