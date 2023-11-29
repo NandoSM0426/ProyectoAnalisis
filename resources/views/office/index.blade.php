@@ -83,5 +83,4 @@
 
       // Envía el formulario de eliminación de la oficina seleccionada
       $('#confirmacion').find('form').submit();
-    } <
-    /script
+    } </script>
